@@ -1,0 +1,217 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+@font-face {
+    font-family: "Quattrocento";
+    font-weight: 400;
+    src: url("../fonts/Quattrocento-Regular.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "Quattrocento Bold";
+    font-weight: 700;
+    src: url("../fonts/Quattrocento-Regular.woff2") format("woff2")
+}
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+:root 
+{
+     /* colors */
+    --global-second: ;
+    --global-minute: ;
+    --global-hour: ;
+
+    --global-dark: #292929;
+    --global-dark-x: #1e1e1e;
+    --global-dark-xx: #121212;
+
+    --global-light: #ffffff;
+
+    /* Clock Swatch 1*/
+    --global-clock1-light-x: #E8E1D1;
+    --global-clock1-light-xx: #EBEBEB;
+    --global-clock1-light-xxx: #CBCBCB;
+    --global-clock1-light-xxxx: #5C5C5C;
+
+    /* Clock Swatch 2*/
+    /* --global-clock2-light-x: #FFF5E5;
+    --global-clock2-light-xxx: #FF9998;
+    --global-clock2-light-xxxx: #545170; */
+
+    /* --global-body-color: var(--global-clock2-light-xxx);
+    --global-background-color: var(--global-clock2-light-x);;
+    --global-border-color: var(--global-clock2-light-xxxx);
+    --global-color: var(--global-dark); */
+
+    --global-body-color: var(--global-clock1-light-xxx);
+    --global-background-color: var(--global-clock1-light-xx);
+    --global-border-color: var(--global-clock1-light-xxxx);
+    --global-color: var(--global-dark);
+    --global-color-hands: var(--global-dark);
+
+    --global-boxshadow: var(--global-boxshadow-light);
+
+    --global-boxshadow-dark: 
+        inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
+        0 15px 15px rgba(0, 0, 0, 0.4),
+        inset 0 15px 15px rgba(0, 0, 0, 0.4);
+    --global-boxshadow-light: 
+        inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html 
+{
+    font-size: 24px;
+    line-height: 1.5;
+    font-family: "Quattrocento", Helvetica, arial, sans-serif;
+    font-weight: bold;
+    background-color: var(--global-body-color);
+    color: var(--global-color);  
+}
+
+*,
+*:before,
+*:after 
+{
+    box-sizing: inherit;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*------------------------------------*\
+#OBJECTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+.c-app
+{
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 100%;
+    display: grid;
+    justify-content: center;
+}
+
+.c-clock
+{
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    background-color: var(--global-background-color);
+    border-radius: 50%;
+    border: 8px solid var(--global-border-color);
+	box-shadow: var(--global-boxshadow);
+    position: relative;
+}
+
+.c-clock .c-number{
+    --rotation: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotation));
+}
+
+.c-clock .c-number3{
+    --rotation: 90deg
+}
+
+.c-clock .c-number6{
+    --rotation: 180deg
+}
+
+.c-clock .c-number9{
+    --rotation: 270deg
+}
+
+.c-clock .c-hand{
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+
+    border-radius: 6px;
+    z-index: 10;
+
+    background-color: var(--global-dark);
+    transform-origin: bottom;
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+}
+
+.c-clock .c-hand.c-secondhand
+{
+    width: 4px;
+    height: 45%;
+    background-color: #fa0053;
+}
+
+.c-clock .c-hand.c-minutehand
+{
+    width: 6px;
+    height: 40%;
+    background-color: var(--global-color-hands);
+}
+
+.c-clock .c-hand.c-hourhand
+{
+    width: 8px;
+    height: 35%;
+    background-color: var(--global-color-hands);
+}
+
+.c-clock::before
+{
+    content: "";
+    position: absolute;
+    background-color: var(--global-color-hands);
+    z-index: 11;
+
+    width: 15px;
+    height: 15px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+}
+
+.c-cities
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+/*------------------------------------*\
+#STATES
+\*------------------------------------*/
+
+.is-night {
+    --global-body-color: var(--global-dark-x);
+    --global-background-color: var(--global-dark);
+    --global-border-color: var(--global-dark-xx);
+    --global-color: var(--global-light);
+    --global-boxshadow : var(--global-boxshadow-dark);
+    --global-color-hands: var(--global-light);
+
+    font-weight: 400;
+}
