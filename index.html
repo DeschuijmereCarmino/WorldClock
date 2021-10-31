@@ -4,32 +4,44 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/screen.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
         <script src="./script/app.js"></script>
         <title>World Clock</title>
     </head>
     <body>
         <main class="c-app">
             <div class="c-clock">
-                <div class="c-hand c-hourhand js-hour" data-hour-hand></div>
-                <div class="c-hand c-minutehand js-minute" data-minute-hand></div>
-                <div class="c-hand c-secondhand js-second" data-second-hand></div>
+                <div class="c-hand c-hourhand js-hour" data-hand></div>
+                <div class="c-hand c-minutehand js-minute" data-hand></div>
+                <div class="c-hand c-secondhand js-second" data-hand></div>
 
-                <div class="c-number c-number3">III</div>
-                <div class="c-number c-number6">VI</div>
-                <div class="c-number c-number9">IX</div>
-                <div class="c-number c-number12">XII</div>
+                <div class="c-number c-number1">1</div>
+                <div class="c-number c-number2">2</div>
+                <div class="c-number c-number3">3</div>
+                <div class="c-number c-number4">4</div>
+                <div class="c-number c-number5">5</div>
+                <div class="c-number c-number6">6</div>
+                <div class="c-number c-number7">7</div>
+                <div class="c-number c-number8">8</div>
+                <div class="c-number c-number9">9</div>
+                <div class="c-number c-number10">10</div>
+                <div class="c-number c-number11">11</div>
+                <div class="c-number c-number12">12</div>
             </div>
+
+            <div class="c-time js-time"></div>
 
             <div class="c-cities">
                     <label class="c-label" for="cities">
                         Select your city
                     </label>
                     <span class="c-cities-select">
-                        <select class="c-cities-select__input" class="" name="cities" id="cities">
-                            <option value="Brussels">Brussels</option>
-                            <option value="London">London</option>
-                            <option value="Tokyo">Tokyo</option>
-                            <option value="New York">New York</option>
+                        <select class="c-cities-select__input js-select" name="cities" id="cities" onchange="myFunction()">
+                            <option value="Europe/Brussels">Brussels</option>
+                            <option value="Europe/London">London</option>
+                            <option value="Asia/Tokyo">Tokyo</option>
+                            <option value="America/Los_Angeles">Los Angeles</option>
                         </select>
                         <svg class="c-cities-select__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M7,10l5,5,5-5Z"/>

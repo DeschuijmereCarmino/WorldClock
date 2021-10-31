@@ -46,6 +46,10 @@
     --global-border-color: var(--global-clock2-light-xxxx);
     --global-color: var(--global-dark); */
 
+    --global-baseline: 8px;
+    --global-whitespace-md: calc(var(--global-baseline)*2);
+    --global-whitespace: calc(var(--global-baseline)*3);
+
     --global-body-color: var(--global-clock1-light-xxx);
     --global-background-color: var(--global-clock1-light-xx);
     --global-border-color: var(--global-clock1-light-xxxx);
@@ -82,6 +86,8 @@ html
     font-weight: bold;
     background-color: var(--global-body-color);
     color: var(--global-color);  
+
+    transition: background-color .5s ease, color .5s ease;
 }
 
 *,
@@ -114,6 +120,7 @@ html
 .c-clock
 {
     margin: auto;
+    margin-bottom: 0;
     width: 300px;
     height: 300px;
     background-color: var(--global-background-color);
@@ -132,16 +139,48 @@ html
     transform: rotate(var(--rotation));
 }
 
+.c-clock .c-number1{
+    --rotation: 30deg;
+}
+
+.c-clock .c-number2{
+    --rotation: 60deg;
+}
+
 .c-clock .c-number3{
-    --rotation: 90deg
+    --rotation: 90deg;
+}
+
+.c-clock .c-number4{
+    --rotation: 120deg;
+}
+
+.c-clock .c-number5{
+    --rotation: 150deg;
 }
 
 .c-clock .c-number6{
-    --rotation: 180deg
+    --rotation: 180deg;
+}
+
+.c-clock .c-number7{
+    --rotation: 210deg;
+}
+
+.c-clock .c-number8{
+    --rotation: 240deg;
 }
 
 .c-clock .c-number9{
-    --rotation: 270deg
+    --rotation: 270deg;
+}
+
+.c-clock .c-number10{
+    --rotation: 300deg;
+}
+
+.c-clock .c-number11{
+    --rotation: 330deg;
 }
 
 .c-clock .c-hand{
@@ -169,6 +208,8 @@ html
     width: 6px;
     height: 40%;
     background-color: var(--global-color-hands);
+
+    transition: all 0.5s ease-in-out;
 }
 
 .c-clock .c-hand.c-hourhand
@@ -176,6 +217,8 @@ html
     width: 8px;
     height: 35%;
     background-color: var(--global-color-hands);
+
+    transition: all 0.5s ease-in-out;
 }
 
 .c-clock::before
@@ -183,10 +226,10 @@ html
     content: "";
     position: absolute;
     background-color: var(--global-color-hands);
-    z-index: 11;
+    z-index: 16;
 
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
 
     top: 50%;
     left: 50%;
@@ -195,11 +238,63 @@ html
     border-radius: 50%;
 }
 
+.c-time
+{
+    margin-top: 64px;
+    height: 150px;
+    text-align: center;
+}
+
 .c-cities
 {
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 100%;
+}
+
+.c-cities-select
+{
+    display: block;
+    position: relative;
+}
+
+.c-cities-select__input
+{
+    --cities-select__input--border: 1px;
+    --cities-select__input--border-radius: 1px;
+
+    appearance: none;
+    outline: none;
+
+    width: 100%;
+    padding: calc(var(--global-baseline) * 1.5 - var(--cities-select__input--border)) var(--global-whitespace-md);
+
+    box-sizing: border-box;
+    border: var(--cities-select__input--border) solid var(--global-border-color);
+    border-radius: 4px;
+
+    background-color: var(--global-background-color);
+    color: var(--global-color);
+
+    font-family: inherit;
+    font-size: 16px;
+
+    line-height: calc(var(--global-baseline) * 3);
+    transition: background-color .5s ease, color .5s ease;
+}
+
+.c-cities-select__symbol
+{
+    width: var(--global-whitespace);
+    height: var(--global-whitespace);
+    position: absolute;
+
+    top: calc(var(--global-whitespace)/2);
+    right: calc(var(--global-whitespace)/2);
+
+    pointer-events: none;
+    fill: var(--global-color);
 }
 /*------------------------------------*\
 #STATES

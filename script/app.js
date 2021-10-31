@@ -1,4 +1,4 @@
-
+let timeZone = 'Asia/Tokyo';
 
 let itBeNight = () =>{
 	document.documentElement.classList.add('is-night');
@@ -9,41 +9,52 @@ let thereBeLight = () =>{
 }
 
 function setClock () {
+    var DateTime = luxon.DateTime.local().setZone();
+    DateTime = luxon.DateTime.local().setZone(timeZone);
 
-    const hourhand = document.querySelector('[data-hour-hand]');
+    if(DateTime.hour >= 7 && DateTime.hour <= 18)
+    {
+        thereBeLight();
+    }
+    else
+    {
+        itBeNight();
+    }
+
+    const time = document.querySelector('.js-time');
+    time.innerHTML= DateTime.toFormat("HH':'mm':'ss");
+
+
+    const seconds = DateTime.second / 60;
+    const minutes = (seconds+DateTime.minute) / 60;
+    const hours = (minutes+DateTime.hour) / 12;
+
+    const hourhand = document.querySelector('.js-hour');
     const minutehand = document.querySelector('.js-minute');
     const secondhand = document.querySelector('.js-second');
-
-    const currentDate = new Date();
-    const seconds = currentDate.getSeconds() / 60;
-    const minutes = (seconds+currentDate.getMinutes()) / 60;
-    const hours = (minutes+currentDate.getHours()) / 12;
-
-    console.log(currentDate.getSeconds())
 
     setRotation(secondhand, seconds);
     setRotation(minutehand, minutes);
     setRotation(hourhand, hours);
-
 }
 
 function setRotation(element, rotation)
 {
     element.style.setProperty('--rotation', rotation * 360)
+    element.setAttribute('data-hand',rotation);
 }
 
-const getAPI = async () => {
-	const endPoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=nl&cnt=1`;
-	const weatherResponse = await get(endPoint);
-
-	showResult(setClock);
-};
+function myFunction() {
+    timeZone = document.querySelector(".js-select").value;
+    setClock;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Script loaded!");
-    setClock();
-    itBeNight();
-    thereBeLight();
-
+    setClock;
     setInterval(setClock, 1000)
+
+    const select = document.querySelector(".js-select");
+    timeZone = select.value;
+    select.addEventListener("change", myFunction);
 });
