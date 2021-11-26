@@ -1,5 +1,3 @@
-let timeZone = 'Asia/Tokyo';
-
 let itBeNight = () =>{
 	document.documentElement.classList.add('is-night');
 }
@@ -9,6 +7,7 @@ let thereBeLight = () =>{
 }
 
 function setClock () {
+    console.log(luxon.DateTime.local().zoneName);
     var DateTime = luxon.DateTime.local().setZone();
     DateTime = luxon.DateTime.local().setZone(timeZone);
 
@@ -44,17 +43,19 @@ function setRotation(element, rotation)
     element.setAttribute('data-hand',rotation);
 }
 
-function myFunction() {
-    timeZone = document.querySelector(".js-select").value;
-    setClock;
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Script loaded!");
-    setClock;
+
+    document.getElementsByTagName("option")[0].innerHTML = luxon.DateTime.local().zoneName;
+    document.getElementsByTagName("option")[0].value = luxon.DateTime.local().zoneName;
+
     setInterval(setClock, 1000)
 
     const select = document.querySelector(".js-select");
     timeZone = select.value;
-    select.addEventListener("change", myFunction);
+
+    select.addEventListener("change", ()=>{    
+        timeZone = select.value;
+        setClock;
+    });
 });

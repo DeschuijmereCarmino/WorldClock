@@ -46,7 +46,7 @@
     --global-border-color: var(--global-clock2-light-xxxx);
     --global-color: var(--global-dark); */
 
-    --global-baseline: 8px;
+    --global-baseline: .3rem;
     --global-whitespace-md: calc(var(--global-baseline)*2);
     --global-whitespace: calc(var(--global-baseline)*3);
 
@@ -59,13 +59,13 @@
     --global-boxshadow: var(--global-boxshadow-light);
 
     --global-boxshadow-dark: 
-        inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
-        0 15px 15px rgba(0, 0, 0, 0.4),
-        inset 0 15px 15px rgba(0, 0, 0, 0.4);
+        inset 0 -.625rem .625rem rgba(255, 255, 255, 0.05), 
+        0 .625rem .625rem rgba(0, 0, 0, 0.4),
+        inset 0 .625rem .625rem rgba(0, 0, 0, 0.4);
     --global-boxshadow-light: 
-        inset 0 -15px 15px rgba(255, 255, 255, 0.05), 
-        0 8px 16px rgba(0, 0, 0, 0.4),
-        inset 0 8px 16px rgba(0, 0, 0, 0.2);
+        inset 0 -.625rem .625rem rgba(255, 255, 255, 0.05), 
+        0 .3rem .6rem rgba(0, 0, 0, 0.4),
+        inset 0 .3rem .6rem rgba(0, 0, 0, 0.2);
 }
 
 /*------------------------------------*\
@@ -80,7 +80,7 @@
 
 html 
 {
-    font-size: 24px;
+    font-size: 150%;
     line-height: 1.5;
     font-family: "Quattrocento", Helvetica, arial, sans-serif;
     font-weight: bold;
@@ -110,10 +110,11 @@ html
 \*------------------------------------*/
 .c-app
 {
-    max-width: 400px;
+    max-width: 16rem;
     margin: 0 auto;
     min-height: 100%;
     display: grid;
+    grid-template-rows: 60% 15% 25%;
     justify-content: center;
 }
 
@@ -121,11 +122,11 @@ html
 {
     margin: auto;
     margin-bottom: 0;
-    width: 300px;
-    height: 300px;
+    width: 12.5rem;
+    height: 12.5rem;
     background-color: var(--global-background-color);
     border-radius: 50%;
-    border: 8px solid var(--global-border-color);
+    border: .3rem solid var(--global-border-color);
 	box-shadow: var(--global-boxshadow);
     position: relative;
 }
@@ -188,7 +189,7 @@ html
     bottom: 50%;
     left: 50%;
 
-    border-radius: 6px;
+    border-radius: .25rem;
     z-index: 10;
 
     background-color: var(--global-dark);
@@ -198,14 +199,14 @@ html
 
 .c-clock .c-hand.c-secondhand
 {
-    width: 4px;
+    width: .16rem;
     height: 45%;
     background-color: #fa0053;
 }
 
 .c-clock .c-hand.c-minutehand
 {
-    width: 6px;
+    width: .25rem;
     height: 40%;
     background-color: var(--global-color-hands);
 
@@ -214,7 +215,7 @@ html
 
 .c-clock .c-hand.c-hourhand
 {
-    width: 8px;
+    width: .33rem;
     height: 35%;
     background-color: var(--global-color-hands);
 
@@ -228,8 +229,8 @@ html
     background-color: var(--global-color-hands);
     z-index: 16;
 
-    width: 16px;
-    height: 16px;
+    width: .6rem;
+    height: .6rem;
 
     top: 50%;
     left: 50%;
@@ -240,8 +241,7 @@ html
 
 .c-time
 {
-    margin-top: 64px;
-    height: 150px;
+    margin: auto;
     text-align: center;
 }
 
@@ -272,13 +272,13 @@ html
 
     box-sizing: border-box;
     border: var(--cities-select__input--border) solid var(--global-border-color);
-    border-radius: 4px;
+    border-radius: .25rem;
 
     background-color: var(--global-background-color);
     color: var(--global-color);
 
     font-family: inherit;
-    font-size: 16px;
+    font-size: .6rem;
 
     line-height: calc(var(--global-baseline) * 3);
     transition: background-color .5s ease, color .5s ease;
